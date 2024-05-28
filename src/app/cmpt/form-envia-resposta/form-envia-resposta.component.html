@@ -1,0 +1,23 @@
+<section>
+  <form [formGroup]="respostaForm">
+    <div class="descritiva" *ngIf="tipoAtividade === 0">
+      <mat-form-field>
+        <mat-label>Sua Resposta</mat-label>
+        <textarea matInput formControlName="resposta"></textarea>
+        <mat-error *ngIf="respostaForm.get('resposta')?.errors?.['required'] && respostaForm.touched">Campo de Resposta
+          necessario!</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="m-escolha" *ngIf="tipoAtividade === 1">
+      <mat-radio-group aria-label="Select an option" formControlName="resposta">
+        <mat-radio-button value="A">A)</mat-radio-button>
+        <mat-radio-button value="B">B)</mat-radio-button>
+        <mat-radio-button value="C">C)</mat-radio-button>
+        <mat-radio-button value="D">D)</mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="respostaForm.get('resposta')?.errors?.['required'] && respostaForm.touched">Necessario escolher
+        uma resposta!</mat-error>
+    </div>
+    <button [disabled]="respostaForm.invalid" (click)="enviaResposta()" mat-flat-button color="primary">Enviar</button>
+  </form>
+</section>

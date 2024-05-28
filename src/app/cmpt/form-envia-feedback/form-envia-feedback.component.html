@@ -1,0 +1,17 @@
+<section>
+  <form [formGroup]="feedbackForm">
+    <mat-button-toggle-group formControlName="experiencia" aria-label="Experiência:">
+      <mat-button-toggle value="POSITIVA">Positiva</mat-button-toggle>
+      <mat-button-toggle value="NEUTRA">Neutra</mat-button-toggle>
+      <mat-button-toggle value="NEGATIVA">Negativa</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-form-field>
+      <mat-label>Sua Opiniao da Atividade:</mat-label>
+      <textarea matInput formControlName="opiniao"></textarea>
+      <mat-error *ngIf="feedbackForm.get('opiniao')?.errors?.['required'] && feedbackForm.touched">Campo de
+        Resposta
+        necessario!</mat-error>
+    </mat-form-field>
+    <button [disabled]="feedbackForm.invalid" (click)="enviarFeedBack()" mat-flat-button color="primary">Enviar</button>
+  </form>
+</section>

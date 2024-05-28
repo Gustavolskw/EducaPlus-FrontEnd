@@ -1,0 +1,118 @@
+.logo {
+  width: 5rem;
+}
+.bi-person {
+  font-size: 2.5rem;
+}
+.logo-logout {
+  font-size: 2.5rem;
+}
+.bi {
+  cursor: pointer;
+}
+
+header {
+  background-color: #d3d3d3;
+}
+.logo-font {
+  color: black;
+  text-decoration: none;
+  font-size: 2rem;
+  font-family: "Angkor", serif;
+}
+
+nav {
+  background-color: #6edef6;
+}
+.botao-nav {
+  background-color: #1aa6c5;
+  border: 1px solid #1aa6c5;
+  border-radius: 7px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5rem 3rem;
+}
+
+.nav-content {
+  .lista-nav {
+    justify-content: center;
+    list-style: none;
+    display: flex;
+    gap: 5rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 5rem;
+  }
+  .bi-person {
+    font-size: 2rem;
+  }
+  .logo-logout {
+    font-size: 2rem;
+  }
+  .conteudo-logo {
+    padding: 0 0 0 10%;
+  }
+  .logo-font {
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "Angkor", serif;
+  }
+  .botao-nav {
+    background-color: #1aa6c5;
+    border: 1px solid #1aa6c5;
+    border-radius: 7px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.2rem 1rem;
+  }
+  .nav-content {
+    justify-content: center;
+    .lista-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav-content {
+    justify-content: center;
+    .lista-nav {
+      align-items: center;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .botao-nav {
+    background-color: #1aa6c5;
+    border: 1px solid #1aa6c5;
+    border-radius: 7px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .nav-content {
+    justify-content: center;
+    .lista-nav {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}

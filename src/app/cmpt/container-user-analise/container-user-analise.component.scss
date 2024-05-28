@@ -1,0 +1,138 @@
+ul {
+  max-width: 100%;
+  li {
+    padding: 0.5rem 2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    justify-content: start;
+    text-align: center;
+    div {
+      gap: 5rem;
+      div {
+        label {
+          //font-family: "Angkor", serif;
+          font-family: "Poppins", sans-serif;
+          font-weight: bold;
+          padding-bottom: 1rem;
+          text-decoration: underline;
+        }
+        p {
+          font-size: 1.5rem;
+          font-family: "Roboto", sans-serif;
+        }
+      }
+    }
+    .buttons {
+      padding: 1.5rem 5rem;
+      justify-content: center;
+      button {
+        padding: 0 2rem;
+        align-items: center;
+        margin: 1rem 1rem;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.erro-sem-cont {
+  mat-icon {
+    height: 10rem;
+    width: 10rem;
+    font-size: 10rem;
+  }
+}
+@media (width < 1500px) {
+  ul {
+    li {
+      div {
+        div {
+          p {
+            font-size: 1rem;
+            font-family: "Roboto", sans-serif;
+          }
+        }
+      }
+      .buttons {
+        padding: 1.5rem 3rem;
+        justify-content: center;
+        button {
+          align-items: center;
+          margin: 1rem 1rem;
+          padding: 0 4rem;
+          border: 1px solid black;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (width < 1000px) {
+  ul {
+    li {
+      padding: 0.2rem 1rem;
+      border: 1px solid black;
+      border-radius: 10px;
+      justify-content: start;
+      text-align: center;
+      div {
+        gap: 2rem;
+        div {
+          label {
+            //font-family: "Angkor", serif;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            padding-bottom: 1rem;
+            text-decoration: underline;
+          }
+          p {
+            font-size: 0.5rem;
+            font-family: "Roboto", sans-serif;
+          }
+        }
+      }
+      .buttons {
+        padding: 1.5rem 3rem;
+        justify-content: center;
+        button {
+          align-items: center;
+          margin: 1rem 1rem;
+          padding: 0 4rem;
+          border: 1px solid black;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (width < 800px) {
+  ul {
+    li {
+      div {
+        flex-wrap: wrap;
+        gap: 2rem;
+        div {
+          label {
+            //font-family: "Angkor", serif;
+            font-size: 0.5rem;
+          }
+          p {
+            font-size: 0.5rem;
+            font-family: "Roboto", sans-serif;
+          }
+        }
+      }
+      .buttons {
+        padding: 0.5rem 1rem;
+        button {
+          font-size: 0.8rem;
+          margin: 1rem 1rem;
+          padding: 0 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<ul class="list-unstyled">
+  <li class=" d-flex my-4" *ngFor="let user of filaAnalise">
+    <div class="d-flex justify-content-center">
+      <div>
+        <label for="login">Login</label>
+        <p id="login">{{user.login}}</p>
+      </div>
+      <div>
+        <label for="tipoUser">Tipo de Usuario</label>
+        <p id="tipoUser"> {{user.tipoUsuario}}</p>
+      </div>
+      <div *ngIf="user.materia != null">
+        <label for="materia">Materia</label>
+        <p id="materia">{{user.materia}}</p>
+      </div>
+      <div>
+        <label for="motivo">Motivo da Inscrição</label>
+        <p id="motivo">{{user.motivo}}</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="aprova(user.id)" class=" bg-success text-white">Aprova</button>
+      <button (click)="reprova(user.id)" class=" bg-danger text-white">Reprova</button>
+    </div>
+  </li>
+</ul>
+<section
+  class="my-5 py-5 d-flex  flex-column justify-content-center gap-3 text-center align-content-center align-items-center erro-sem-cont"
+  *ngIf="semUserEmAnalise ==true">
+  <mat-icon matPrefix>
+    folder_off
+  </mat-icon>
+  <mat-error>Sem Usuarios em Analise</mat-error>
+</section>

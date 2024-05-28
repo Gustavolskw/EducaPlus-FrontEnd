@@ -1,0 +1,13 @@
+<section class="d-flex flex-wrap justify-content-around gap-5">
+
+  <mat-card class="example-card" *ngFor="let feedback of listaDeFeedbacks">
+    <mat-card-header>
+      <mat-card-title>{{feedback.usuario}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="experiencia">{{feedback.experiencia}}</p>
+      <p class="opiniao">{{feedback.opiniao}}</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+  </mat-card>
+</section>

@@ -1,0 +1,34 @@
+<app-header [loginPage]="true"></app-header>
+<section *ngIf="atividade">
+  <h2>{{atividade.titulo}}</h2>
+  <h4>{{atividade.materia}}</h4>
+  <p>{{tipoDeAtividade}}</p>
+  <p>{{atividade.enunciado}}</p>
+  <p *ngIf="atividade.questoes !=null">
+    {{atividade.questoes}}
+  </p>
+  <p id="prof">Professor: {{atividade.professor}}</p>
+  <p>{{atividade.data}}</p>
+</section>
+<div>
+  <button (click)="responder()">Responder <mat-icon>
+      quiz
+    </mat-icon>
+  </button>
+  <button (click)="enviarFeedback()">Enviar FeedBack <mat-icon>
+      chat_paste_go
+    </mat-icon>
+  </button>
+</div>
+
+<app-form-envia-resposta *ngIf="abrirResposta" [idAtividade]="atividadeId" [tipoAtividade]="tipoAtividadeRecebida"
+  (respostaEnviada)="respotaEnvidaPeloUser()"></app-form-envia-resposta>
+
+<app-form-envia-feedback *ngIf="enviarFeedbackInput" [atividadeId]="atividadeId" [userId]="userId"
+  (enviaFeedBack)="feedbackEnviado()"></app-form-envia-feedback>
+
+<section class="justify-content-center border-1 border-top border-black" *ngIf="!semFeedback">
+  <h2 class="text-center py-3">FeedBacks</h2>
+  <app-card-feedback idAtividade="{{atividadeId}}" (semFeedBack)="semFeedback = $event"></app-card-feedback>
+</section>
+<app-footer></app-footer>

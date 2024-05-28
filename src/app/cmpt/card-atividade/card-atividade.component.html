@@ -1,0 +1,32 @@
+<section class="d-flex flex-wrap justify-content-center gap-5 py-5" *ngIf="recebeu===true">
+  <mat-card class="example-card" *ngFor="let atividade of filteredAtividades; let i = index">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{atividade.titulo}}</mat-card-title>
+        <mat-card-subtitle>{{atividade.materia}}</mat-card-subtitle>
+
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content *ngIf="atividade.questoes">
+      {{atividade.questoes}}
+    </mat-card-content>
+    <mat-card-content *ngIf="atividade.enunciado">
+      {{atividade.enunciado}}
+    </mat-card-content>
+    <p>Professor: {{atividade.professor}}</p>
+    <button [routerLink]="['/atividades',atividade.idAtividade]" mat-raised-button color="primary">Acessar</button>
+  </mat-card>
+</section>
+<section class=" d-flex  flex-column justify-content-center gap-3 text-center align-content-center align-items-center"
+  *ngIf="recebeu===false">
+  <mat-spinner></mat-spinner>
+  <mat-error *ngIf="recebeu === false">Erro ao receber valores da API</mat-error>
+</section>
+<section
+  class="my-5 py-5 d-flex  flex-column justify-content-center gap-3 text-center align-content-center align-items-center erro-sem-cont"
+  *ngIf="semNadaPostado !=null">
+  <mat-icon matPrefix>
+    folder_off
+  </mat-icon>
+  <mat-error>{{semNadaPostado}}</mat-error>
+</section>

@@ -1,0 +1,61 @@
+<app-header [loginPage]="false"></app-header>
+<button class="rounded border-0 text-white px-2 my-2 mx-2 d-flex" routerLink="/login">Retornar <mat-icon
+    class="material-symbols-outlined">
+    login
+  </mat-icon></button>
+<section>
+  <form [formGroup]="cadastroForm">
+    <mat-form-field class="py-2">
+      <mat-label>Login/Nome</mat-label>
+      <input matInput formControlName="login">
+      <mat-error *ngIf="cadastroForm.get('login')?.errors?.['required'] && cadastroForm.touched">Login
+        Obrigatorio!</mat-error>
+    </mat-form-field>
+
+    <div class="d-flex gap-2 py-2">
+      <mat-form-field class="py-2">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="senha">
+        <mat-error *ngIf="cadastroForm.get('senha')?.errors?.['required'] && cadastroForm.touched">Senha
+          Obrigatoria!</mat-error>
+        <mat-error *ngIf="cadastroForm.get('senha')?.errors?.['minlength'] && cadastroForm.get('senha')?.touched">
+          Senha deve ter no mínimo 5 caracteres!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="py-2">
+        <mat-label>Confirmar senha</mat-label>
+        <input matInput type="password" formControlName="confirmarSenha">
+        <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.errors?.['required'] && cadastroForm.touched">Confirmação
+          de Senha
+          Obrigatoria!</mat-error>
+        <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.errors?.['equalTo'] && cadastroForm.touched">Senhas
+          Incopativeis!</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex gap-2">
+      <mat-form-field class="py-2">
+        <mat-label>Tipo de Usuario</mat-label>
+        <mat-select formControlName="tipoUsuario">
+          <mat-option *ngFor="let tipo of tipoUsuario" [value]="tipo">{{ tipo }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="cadastroForm.get('tipoUsuario')?.value === 'PROFESSOR'" class="py-2">
+        <mat-label>Materia</mat-label>
+        <mat-select formControlName="materia">
+          <mat-option *ngFor="let mat of materias" [value]="mat.materiaName">{{ mat.materiaName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="py-2">
+      <mat-label>Motivo da inscrição</mat-label>
+      <textarea matInput formControlName="motivo"></textarea>
+      <mat-error *ngIf="cadastroForm.get('motivo')?.errors?.['required'] && cadastroForm.touched">Motivo do Cadastro
+        Obrigatorio!!</mat-error>
+    </mat-form-field>
+    <mat-card-actions class="py-2">
+      <button (click)="executarEnvio()" [disabled]="cadastroForm.invalid" mat-flat-button color="primary">
+        Criar Minha Conta
+      </button>
+    </mat-card-actions>
+  </form>
+</section>

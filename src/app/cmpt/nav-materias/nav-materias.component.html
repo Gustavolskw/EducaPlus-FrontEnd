@@ -1,0 +1,7 @@
+<nav class="nav-content">
+  <ul class="lista-nav">
+    <li *ngFor="let materia of materias">
+      <button (click)="setFilter(materia.materiaName)" class="botao-nav ">{{materia.materiaName}}</button>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Editar Atividade:</h1>
+<form [formGroup]="atividadeForm" class="d-flex flex-column justify-content-center p-2 gap-2">
+  <div class="d-flex flex-wrap justify-content-center p-2 gap-2">
+    <mat-form-field>
+      <mat-label>Titulo:</mat-label>
+      <input matInput formControlName="titulo" placeholder="Título">
+    </mat-form-field>
+    <mat-form-field class="enunciado-form-field">
+      <mat-label>Enunciado:</mat-label>
+      <textarea matInput formControlName="enunciado" placeholder="Enunciado"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="atividadeForm.get('questoes')?.value != null">
+      <mat-label>Questoes:</mat-label>
+      <input matInput formControlName="questoes" placeholder="Questões">
+    </mat-form-field>
+    <div class="m-escolha" *ngIf="atividadeForm.get('questoes')?.value != null">
+      <label for="resposta">Resposta:</label>
+      <mat-radio-group id="resposta" aria-label="Resposta:" formControlName="resposta">
+        <mat-radio-button value="A">A)</mat-radio-button>
+        <mat-radio-button value="B">B)</mat-radio-button>
+        <mat-radio-button value="C">C)</mat-radio-button>
+        <mat-radio-button value="D">D)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div mat-dialog-actions class="">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="enviaUpdate()" cdkFocusInitial>Enviar</button>
+  </div>
+</form>

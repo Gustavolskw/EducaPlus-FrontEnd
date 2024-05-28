@@ -1,0 +1,35 @@
+<header class="d-flex justify-content-around ">
+  <div class="conteudo-logo">
+    <a class="text-center logo-font"><img class="logo" src="../../../assets/graduation-cap.png" alt=""
+        routerLink="/main">
+      EducaPlus</a>
+  </div>
+  <div class="d-flex justify-content-center gap-md-3 gap-lg-5 gap-sm-2" *ngIf="loginPage">
+    <div class="d-flex align-items-center">
+      <p class="text-center justify-content-center pt-2">{{userName}} </p>
+      <i class="bi bi-person"></i>
+    </div>
+    <a class="pt-2 text-black" (click)="logout()"><i class="bi bi-box-arrow-right logo-logout"></i></a>
+  </div>
+</header>
+<nav class="nav-content" *ngIf="loginPage">
+  <ul class="lista-nav">
+    <li>
+      <button [routerLink]="['/cont-extra']" class="botao-nav ">Conteúdo Extra</button>
+    </li>
+    <li>
+      <button [routerLink]="['/atividades']" class="botao-nav ">Atividades</button>
+    </li>
+    <li>
+      <button class="botao-nav ">Notas</button>
+    </li>
+    <li>
+      <button [routerLink]="['/adminstracao']" class="botao-nav "
+        *ngIf="status === 'ADMIN' || status==='STAFF'">Administração</button>
+    </li>
+    <li>
+      <button [routerLink]="['/adminstracao']" class="botao-nav "
+        *ngIf="status === 'ADMIN' || status==='STAFF'">Postar</button>
+    </li>
+  </ul>
+</nav>

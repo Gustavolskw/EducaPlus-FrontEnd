@@ -1,0 +1,25 @@
+section {
+  padding-bottom: 2rem;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    mat-button-toggle-group {
+      margin: 0 auto;
+    }
+    mat-form-field {
+      margin: 0 auto;
+
+      width: 60%;
+      textarea {
+        resize: none;
+      }
+    }
+    button {
+      margin: 0 auto;
+      width: 30%;
+    }
+  }
+}

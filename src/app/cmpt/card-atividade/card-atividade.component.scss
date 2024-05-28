@@ -1,0 +1,31 @@
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+  text-align: center;
+  margin: 0 auto;
+  mat-card-header {
+    mat-card-title-group {
+      justify-content: center;
+      gap: 4rem;
+      padding: 2rem 0;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
+  mat-card-content {
+    padding: 1rem;
+    text-align: center;
+  }
+  button {
+    margin: 2rem;
+  }
+}
+.erro-sem-cont {
+  mat-icon {
+    height: 10rem;
+    width: 10rem;
+    font-size: 10rem;
+  }
+}

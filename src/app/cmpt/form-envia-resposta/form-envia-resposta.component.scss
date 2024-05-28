@@ -1,0 +1,35 @@
+section {
+  padding: 3rem 0;
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .descritiva {
+      display: flex;
+      justify-content: center;
+      mat-form-field {
+        width: 80%;
+        textarea {
+          resize: none;
+        }
+      }
+    }
+    .m-escolha {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      mat-radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5rem;
+        padding-bottom: 2rem;
+      }
+    }
+    button {
+      margin: 0 auto;
+      width: 40%;
+    }
+  }
+}

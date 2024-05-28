@@ -1,0 +1,6 @@
+<app-header [loginPage]="true"></app-header>
+<app-nav-materias (filterMateriaChanged)="filterMateria = $event"></app-nav-materias>
+<section>
+  <app-card-cont-extra [filterMateria]="filterMateria"></app-card-cont-extra>
+</section>
+<app-footer></app-footer>

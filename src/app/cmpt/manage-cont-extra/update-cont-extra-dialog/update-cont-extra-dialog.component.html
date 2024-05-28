@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Editar Conteudo Extra:</h1>
+<form [formGroup]="contExtraForm" class="d-flex flex-column justify-content-center p-2 gap-2">
+  <div class="d-flex flex-wrap justify-content-center p-2 gap-2">
+    <mat-form-field>
+      <mat-label>Titulo:</mat-label>
+      <input matInput formControlName="titulo">
+    </mat-form-field>
+    <mat-form-field class="enunciado-form-field" *ngIf="contExtraForm.get('descricao')?.value != null">
+      <mat-label>Descricao:</mat-label>
+      <textarea matInput formControlName="descricao"></textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="contExtraForm.get('videoUrl')?.value != null">
+      <mat-label>URL do Video:</mat-label>
+      <input matInput formControlName="videoUrl">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="enviaUpdate()" cdkFocusInitial>Enviar</button>
+  </div>
+</form>

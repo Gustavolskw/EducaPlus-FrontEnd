@@ -1,0 +1,32 @@
+<app-header [loginPage]="true"></app-header>
+<nav class="nav-content">
+  <ul class="lista-nav">
+    <li *ngIf="status === 'ADMIN'">
+      <button (click)="changeOption('apr/rep')" class="botao-nav ">Aprova/Reprova-Usuario</button>
+    </li>
+    <li>
+      <button (click)="changeOption('atividade')" class="botao-nav ">Atividade</button>
+    </li>
+    <li>
+      <button (click)="changeOption('cont-extra')" class="botao-nav ">Conteudo-Extra</button>
+    </li>
+    <li>
+      <button (click)="changeOption('notas')" class="botao-nav ">Gerenciar Notas</button>
+    </li>
+  </ul>
+</nav>
+<section *ngIf="!option">
+  <h2 class="text-center">Seja Bem Vindo a pagina de Administração!</h2>
+</section>
+<section class="user-analise" *ngIf="option==='apr/rep'">
+  <app-container-user-analise></app-container-user-analise>
+</section>
+<section *ngIf="option==='atividade'">
+  <app-manage-atividades></app-manage-atividades>
+</section>
+<section *ngIf="option==='cont-extra'">
+  <app-manage-cont-extra></app-manage-cont-extra>
+</section>
+<section *ngIf="option==='notas'">
+  <app-manage-notas></app-manage-notas>
+</section>
