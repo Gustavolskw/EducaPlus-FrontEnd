@@ -8,7 +8,7 @@ export interface contExtra {
   titulo: string;
   tipoConteudo: string;
   Descricao: string;
-  videoUrl: string;
+  videoUrl: string
   materia: string
   professor: string
 }
@@ -107,6 +107,7 @@ export interface NotaPostUpdate {
 export interface NotaBusca {
   idNota: number;
   titulo: string;
+  materia: string;
   enunciado: string;
   questoes: string | null;
   respostaDoAluno: string;

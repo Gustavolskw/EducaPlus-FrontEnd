@@ -15,7 +15,8 @@ export class FormEnviaFeedbackComponent implements OnInit {
   feedbackForm!: FormGroup;
   @Input() userId!: number | null;
   @Input() atividadeId!: string | null;
-  @Output() enviaFeedBack = new EventEmitter();
+  @Output() enviaFeedBack = new EventEmitter<string>();
+  @Output() formEnviado = new EventEmitter<any>();
   token!: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -46,8 +47,9 @@ export class FormEnviaFeedbackComponent implements OnInit {
             title: 'FeedBack Enviado!',
             text: success.reposnseMessage,
           });
-          this.enviaFeedBack.emit();
+          this.enviaFeedBack.emit("Update");
           this.feedbackForm.reset()
+          this.formEnviado.emit();
         },
         error: (err) => {
           console.log(err);
@@ -56,8 +58,9 @@ export class FormEnviaFeedbackComponent implements OnInit {
             title: 'Erro ao Enviar Feedback!',
             text: err.error.error,
           });
-          this.enviaFeedBack.emit();
-          this.feedbackForm.reset()
+          this.enviaFeedBack.emit("Update");
+          this.feedbackForm.reset();
+          this.formEnviado.emit();
         }
       })
     }

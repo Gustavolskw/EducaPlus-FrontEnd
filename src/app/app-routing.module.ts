@@ -8,6 +8,7 @@ import { AdministracaoComponent } from './pages/administracao/administracao.comp
 
 import { AtividadesSelectComponent } from './pages/atividades-select/atividades-select.component';
 import { authGuard } from './guards/authGuard';
+import { PostagensComponent } from './pages/postagens/postagens.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: "adminstracao",
     component: AdministracaoComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: "postagens",
+    component: PostagensComponent,
     canActivate: [authGuard]
   },
   {

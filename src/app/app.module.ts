@@ -51,6 +51,9 @@ import { ManageContExtraComponent } from './cmpt/manage-cont-extra/manage-cont-e
 import { UpdateContExtraDialogComponent } from './cmpt/manage-cont-extra/update-cont-extra-dialog/update-cont-extra-dialog.component';
 import { ManageNotasComponent } from './cmpt/manage-notas/manage-notas.component';
 import { UpdateNotasDialogComponent } from './cmpt/manage-notas/update-notas-dialog/update-notas-dialog.component';
+import { PostagensComponent } from './pages/postagens/postagens.component';
+import { FormContExtraComponent } from './cmpt/form-cont-extra/form-cont-extra.component';
+import { FormAtividadesComponent } from './cmpt/form-atividades/form-atividades.component';
 
 
 
@@ -80,6 +83,9 @@ import { UpdateNotasDialogComponent } from './cmpt/manage-notas/update-notas-dia
     UpdateContExtraDialogComponent,
     ManageNotasComponent,
     UpdateNotasDialogComponent,
+    PostagensComponent,
+    FormContExtraComponent,
+    FormAtividadesComponent,
   ],
   imports: [
     BrowserModule,

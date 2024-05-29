@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Atividade, AtividadeUpdate } from '../types/interfaces';
+import { Atividade, AtividadeCadastro, AtividadeUpdate } from '../types/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AtividadeService {
     return this.httpClient.get<Atividade>(`${this.apiUrl}/list/${id}`)
   }
 
-  adicionar(atividade: Atividade, token: string): Observable<any> {
+  adicionar(atividade: AtividadeCadastro, token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': token
     })

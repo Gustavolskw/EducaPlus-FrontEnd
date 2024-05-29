@@ -1,6 +1,7 @@
 <div class="row border-bottom border-3">
   <div class="col-6 col-md-4 col-xxl-6" *ngFor="let materia of materiasHasAtividade">
-    <button class="text-center w-100" (click)="setfilter(materia.materiaName)">
+    <button class="text-center w-100" (click)="setfilter(materia.materiaName)"
+      [class.active]="materia.materiaName === selectedMateria">
       {{materia.materiaName}}</button>
   </div>
 </div>

@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
   userName: string | null = null;
   role: number | null = null;
   status!: "ADMIN" | "STAFF" | "USER";
+
+
   constructor(private router: Router,
     private userService: UserService
   ) {

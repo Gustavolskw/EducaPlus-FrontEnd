@@ -26,9 +26,10 @@ export class UpdateContExtraDialogComponent implements OnInit {
     this.contExtraForm = this.fb.group({
       ConteudoId: [this.data.conteudoExtra.ContExtraId, Validators.required],
       titulo: [this.data.conteudoExtra.titulo],
-      videoUrl: [this.data.conteudoExtra.videoUrl],
-      descricao: [this.data.conteudoExtra.Descricao]
+      videoUrl: [this.data.conteudoExtra.videoUrl, Validators.maxLength(355)],
+      descricao: [this.data.conteudoExtra.Descricao, Validators.maxLength(200)]
     });
+
   }
 
 

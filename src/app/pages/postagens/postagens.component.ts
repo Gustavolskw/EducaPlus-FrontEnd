@@ -5,13 +5,12 @@ import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-atividades',
-  templateUrl: './atividades.component.html',
-  styleUrls: ['./atividades.component.scss']
+  selector: 'app-postagens',
+  templateUrl: './postagens.component.html',
+  styleUrls: ['./postagens.component.scss']
 })
-export class AtividadesComponent implements OnInit {
-  filterMateria: string = '';
-
+export class PostagensComponent implements OnInit {
+  option!: string
 
   constructor(private router: Router,
     private userService: UserService,
@@ -19,8 +18,10 @@ export class AtividadesComponent implements OnInit {
     private tokenService: TokenService
   ) {
   }
+
   ngOnInit(): void {
     this.checkSession();
+    this.option = 'cont-extra'
   }
 
   checkSession() {
@@ -32,5 +33,9 @@ export class AtividadesComponent implements OnInit {
         }
       }
     })
+  }
+
+  changeOption(selected: string) {
+    this.option = selected
   }
 }

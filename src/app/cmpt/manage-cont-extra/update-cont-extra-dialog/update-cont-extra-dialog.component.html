@@ -8,10 +8,15 @@
     <mat-form-field class="enunciado-form-field" *ngIf="contExtraForm.get('descricao')?.value != null">
       <mat-label>Descricao:</mat-label>
       <textarea matInput formControlName="descricao"></textarea>
+      <mat-error *ngIf="contExtraForm.get('descricao')?.errors?.['maxlength'] && contExtraForm.touched">Descrição
+        Ultrapassa limite de 200 caracteres!</mat-error>
     </mat-form-field>
     <mat-form-field *ngIf="contExtraForm.get('videoUrl')?.value != null">
       <mat-label>URL do Video:</mat-label>
       <input matInput formControlName="videoUrl">
+      <mat-error *ngIf="contExtraForm.get('videoUrl')?.errors?.['maxlength'] && contExtraForm.touched">URL do Vídeo é
+        Maior
+        que o possivel</mat-error>
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="">

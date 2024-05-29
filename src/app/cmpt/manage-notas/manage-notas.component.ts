@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { materia, NotaBusca } from 'src/app/types/interfaces';
 import Swal from 'sweetalert2';
+import { UpdateNotasDialogComponent } from './update-notas-dialog/update-notas-dialog.component';
 
 @Component({
   selector: 'app-manage-notas',
@@ -24,21 +25,23 @@ export class ManageNotasComponent implements OnInit {
   recebeu: boolean = false;
   notaList: NotaBusca[] = [];
   filteredNota: NotaBusca[] = [];
+  selectedMateria: string = '';
 
-
-
-
-  constructor(private tokenService: TokenService,
+  constructor(
+    private tokenService: TokenService,
     private notaService: NotaService,
     private userService: UserService,
     private materiaService: MateriasService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog
+  ) { }
 
-  }
   ngOnInit(): void {
     this.token = this.tokenService.getToken();
     this.buscarUser();
+    this.buscaNotas();
+    this.buscaMateriasComContExtra();
   }
+
   buscarUser() {
     const Toast = Swal.mixin({
       toast: true,
@@ -90,9 +93,9 @@ export class ManageNotasComponent implements OnInit {
         }
       },
       error: (err) => {
-
+        // Handle error
       }
-    })
+    });
   }
 
   setfilter(materia: string): void {
@@ -107,16 +110,20 @@ export class ManageNotasComponent implements OnInit {
         toast.onmouseleave = Swal.resumeTimer;
       }
     });
+
+    this.selectedMateria = materia;
+    console.log(materia);// Set the selected materia
+
     if (materia === "TODOS") {
-      this.filteredContExtra = this.notaList;
+      this.filteredNota = this.notaList;
     } else {
       if (materia) {
-        this.filteredContExtra = this.notaList.filter(item => item.materia === materia);
+        this.filteredNota = this.notaList.filter(item => item.materia === materia);
       } else {
-        this.filteredContExtra = this.notaList;
+        this.filteredNota = this.notaList;
       }
 
-      if (this.recebeu && this.filteredContExtra.length === 0) {
+      if (this.recebeu && this.filteredNota.length === 0) {
         Toast.fire({
           icon: "error",
           title: "Sem Conteúdo dessa Materia"
@@ -125,8 +132,53 @@ export class ManageNotasComponent implements OnInit {
     }
   }
 
+  openDialog(nota: NotaBusca, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef = this.dialog.open(UpdateNotasDialogComponent, {
+      data: { nota },
+      enterAnimationDuration,
+      exitAnimationDuration
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        this.buscaNotas();
+      }
+    });
+  }
+
+  buscaMateriasComContExtra(): void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+
+    this.materiaService.listarMateriasComNotas().subscribe({
+      next: (materias) => {
+        if (materias.length === 0) {
+          this.recebeu = true;
+          this.materiasHasNota = [];
+        }
+        this.recebeu = true;
+        this.materiasHasNota = materias;
+        this.materiasHasNota.push(this.todas);
+      },
+      error: (err) => {
+        this.materiasHasNota = [];
+        Toast.fire({
+          icon: "error",
+          title: err.error.error
+        });
+      }
+    });
+  }
+
 
 
 }
-
-

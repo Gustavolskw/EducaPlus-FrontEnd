@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Observable, tap } from 'rxjs';
@@ -30,5 +30,12 @@ export class AuthService {
         this.userService.salvarToken(authToken);
       })
     )
+  }
+
+  isAuthenticated(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': token
+    })
+    return this.http.get<any>(`${this.apiUrl}/teste/token`, { headers })
   }
 }

@@ -26,6 +26,7 @@ export class ManageContExtraComponent implements OnInit {
   recebeu: boolean = false;
   conteudoExtraList: contExtra[] = [];
   filteredContExtra: contExtra[] = [];
+  selectedMateria: string = "";
 
 
   constructor(private tokenService: TokenService,
@@ -114,6 +115,7 @@ export class ManageContExtraComponent implements OnInit {
         toast.onmouseleave = Swal.resumeTimer;
       }
     });
+    this.selectedMateria = materia;
     if (materia === "TODOS") {
       this.filteredContExtra = this.conteudoExtraList;
     } else {
@@ -179,6 +181,8 @@ export class ManageContExtraComponent implements OnInit {
       }
     });
   }
+
+
   async removeConteudoExtra(contExtraId: string) {
     const Toast = Swal.mixin({
       toast: true,
@@ -214,6 +218,7 @@ export class ManageContExtraComponent implements OnInit {
             title: "Conteudo Extra excluido com sucesso!"
           });
           this.buscaConteudoExtra();
+          this.buscaMateriasComContExtra();
         },
         error: (err) => {
           Toast.fire({

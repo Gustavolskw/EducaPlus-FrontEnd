@@ -17,6 +17,9 @@ export class MateriasService {
   listar(): Observable<materia[]> {
     return this.httpClient.get<materia[]>(`${this.apiUrl}/all`)
   }
+  listaMateriaPorUserid(userId: number): Observable<materia> {
+    return this.httpClient.get<materia>(`${this.apiUrl}/user/${userId}`);
+  }
 
 
   listarMateriasComAtividade(): Observable<materia[]> {
@@ -25,6 +28,9 @@ export class MateriasService {
 
   listarMateriasComContExtra(): Observable<materia[]> {
     return this.httpClient.get<materia[]>(`${this.apiUrl}/cont-extra`)
+  }
+  listarMateriasComNotas(): Observable<materia[]> {
+    return this.httpClient.get<materia[]>(`${this.apiUrl}/notas`)
   }
 }
 

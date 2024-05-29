@@ -30,7 +30,13 @@ export class ConteudoExtraService {
       'Authorization': token
     })
     return this.httpClient.put<any>(`${this.apiUrl}/update`, updateContExtra, { headers });
+  }
 
+  postar(conteudoExtra: contExtra, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': token
+    })
+    return this.httpClient.post<any>(`${this.apiUrl}/add`, conteudoExtra, { headers })
   }
 
 }

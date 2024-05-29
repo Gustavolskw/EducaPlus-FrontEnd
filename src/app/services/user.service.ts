@@ -28,7 +28,6 @@ export class UserService {
   }
 
   returnUser(): Observable<UserResponse | null> {
-
     return this.userSUbject.asObservable();
   }
 

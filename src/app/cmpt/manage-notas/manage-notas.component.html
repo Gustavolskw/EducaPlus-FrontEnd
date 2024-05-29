@@ -1,1 +1,62 @@
-<p>manage-notas works!</p>
+<div class="row border-bottom border-3">
+  <div class="col-6 col-md-4 col-xxl-6" *ngFor="let materia of materiasHasNota">
+    <button class="text-center w-100" [class.active]="materia.materiaName === selectedMateria"
+      (click)="setfilter(materia.materiaName)">
+      {{materia.materiaName}}
+    </button>
+  </div>
+</div>
+
+<div class="example-action-buttons justify-content-center text-center d-flex gap-2 my-2">
+  <button mat-button (click)="accordion.openAll()">Expand All</button>
+  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+</div>
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel *ngFor="let nota of filteredNota">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{nota.titulo}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{nota.materia}}
+      </mat-panel-description>
+      <mat-panel-description>
+        Professor: {{nota.professor}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <div class="d-flex justify-content-center">
+        <label for="aluno">Aluno: </label>
+        <p class="text-center" id="aluno">{{nota.aluno}}</p>
+      </div>
+
+
+      <label for="enun">Enunciado:</label>
+      <p id="enun">{{nota.enunciado}}</p>
+
+      <label for="quest" *ngIf="nota.questoes != null">Questão:</label>
+      <p id="quest" *ngIf="nota.questoes != null">{{nota.questoes}}</p>
+
+      <label for="resp" *ngIf="nota.respostaCerta != null">Resposta Certa:</label>
+      <p id="resp" *ngIf="nota.respostaCerta != null">{{nota.respostaCerta}}</p>
+      <div class="d-flex">
+        <label for="nota">Nota:</label>
+        <p id="nota" class="ps-2" [class.lowGrade]="nota.nota <7" [class.highGrade]="nota.nota >=7">{{nota.nota}}
+        </p>
+      </div>
+
+    </div>
+
+    <div class="d-flex flex-wrap gap-3">
+      <button mat-raised-button color="primary" (click)="openDialog(nota, '0ms', '0ms')">Editar</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<section
+  class="my-5 py-5 d-flex flex-column justify-content-center gap-3 text-center align-content-center align-items-center erro-sem-cont"
+  *ngIf="semNota">
+  <mat-icon matPrefix>folder_off</mat-icon>
+  <mat-error>Sem Notas Postadas</mat-error>
+</section>

@@ -1,0 +1,50 @@
+<section>
+  <form [formGroup]="contExtraForm" class="d-flex flex-column justify-content-center p-2 gap-2">
+    <h2 class="text-center fs-3 text-white pt-1 px-2">Postagem de Conteúdo Extra</h2>
+    <div class="d-flex flex-column flex-wrap justify-content-center p-5 gap-2">
+      <mat-form-field>
+        <mat-label>Titulo:</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título">
+        <mat-error *ngIf="contExtraForm.get('titulo')?.errors?.['required'] && contExtraForm.touched">Titulo
+          Obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tipo de Conteúdo</mat-label>
+        <mat-select formControlName="conteudo">
+          <mat-option (click)="contExtraForm.get('videoUrl')?.reset()" value="TEXTO">Texto</mat-option>
+          <mat-option (click)="contExtraForm.get('descricao')?.reset()" value="VIDEO">Vídeo</mat-option>
+        </mat-select>
+        <mat-error *ngIf="contExtraForm.get('conteudo')?.errors?.['required'] && contExtraForm.touched">Tipo do Conteúdo
+          é Obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="contExtraForm.get('conteudo')?.value  == 'TEXTO'">
+        <mat-label>Descrição:</mat-label>
+        <textarea matInput formControlName="descricao"></textarea>
+        <mat-error *ngIf="contExtraForm.get('descricao')?.errors?.['required'] && contExtraForm.touched">Descrição é
+          Obrigatória
+        </mat-error>
+        <mat-error *ngIf="contExtraForm.get('descricao')?.errors?.['maxlength'] && contExtraForm.touched">Descrição
+          Ultrapassa limite de 200 caracteres!</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field *ngIf="contExtraForm.get('conteudo')?.value  == 'VIDEO'">
+        <mat-label>Url do Video:</mat-label>
+        <input matInput formControlName="videoUrl" placeholder="https://www.youtube.com/embed/*Codigo do video*">
+        <mat-error *ngIf="contExtraForm.get('videoUrl')?.errors?.['required'] && contExtraForm.touched">URL do Vídeo é
+          Obrigatória</mat-error>
+        <mat-error *ngIf="contExtraForm.get('videoUrl')?.errors?.['maxlength'] && contExtraForm.touched">URL do Vídeo é
+          Maior
+          que o possivel</mat-error>
+
+      </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-center gap-2">
+      <button mat-button (click)="contExtraForm.reset()">Cancelar</button>
+      <button mat-flat-button [disabled]="contExtraForm.invalid" (click)="enviaForm()" color="primary">Enviar</button>
+    </div>
+  </form>
+</section>

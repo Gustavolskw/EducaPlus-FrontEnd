@@ -3,6 +3,9 @@ section {
     padding-top: 10rem;
   }
 }
+.div-sombra {
+  height: 100vh;
+}
 
 .nav-content {
   background-color: #71b7c7;
@@ -31,10 +34,6 @@ section {
   }
 }
 
-.user-analise {
-  padding: 2rem 12rem;
-}
-
 @media (width < 1600px) {
   .nav-content {
     background-color: #71b7c7;
@@ -57,10 +56,6 @@ section {
       margin: 0 auto;
       padding: 0.5rem 0;
     }
-  }
-
-  .user-analise {
-    padding: 2rem 6rem;
   }
 }
 
@@ -86,21 +81,5 @@ section {
       margin: 0 auto;
       padding: 0.5rem 2rem;
     }
-  }
-
-  .user-analise {
-    padding: 2rem 4rem;
-  }
-}
-
-@media (width < 785px) {
-  .user-analise {
-    padding: 2rem 2rem;
-  }
-}
-
-@media (width < 450px) {
-  .user-analise {
-    padding: 2rem 0.5rem;
   }
 }

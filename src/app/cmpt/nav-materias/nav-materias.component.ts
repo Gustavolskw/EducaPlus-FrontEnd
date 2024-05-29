@@ -10,7 +10,7 @@ import { materia } from 'src/app/types/interfaces';
 })
 export class NavMateriasComponent implements OnInit {
   materias!: materia[];
-  materia!: string
+  selectedMateria: string = ""
   @Output() filterMateriaChanged = new EventEmitter<string>();
 
 
@@ -32,6 +32,7 @@ export class NavMateriasComponent implements OnInit {
     })
   }
   setFilter(materia: string): void {
+    this.selectedMateria = materia;
     this.filterMateriaChanged.emit(materia);
   }
 

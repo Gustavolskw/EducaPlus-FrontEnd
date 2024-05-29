@@ -1,17 +1,22 @@
 <app-header [loginPage]="true"></app-header>
 <nav class="nav-content">
+  <h2 class="text-center fs-2 text-white py-2">Administração</h2>
   <ul class="lista-nav">
     <li *ngIf="status === 'ADMIN'">
-      <button (click)="changeOption('apr/rep')" class="botao-nav ">Aprova/Reprova-Usuario</button>
+      <button (click)="changeOption('apr/rep')" class="botao-nav "
+        [class.active]="option === 'apr/rep'">Aprova/Reprova-Usuario</button>
     </li>
     <li>
-      <button (click)="changeOption('atividade')" class="botao-nav ">Atividade</button>
+      <button (click)="changeOption('atividade')" class="botao-nav "
+        [class.active]="option === 'atividade'">Atividade</button>
     </li>
     <li>
-      <button (click)="changeOption('cont-extra')" class="botao-nav ">Conteudo-Extra</button>
+      <button (click)="changeOption('cont-extra')" class="botao-nav "
+        [class.active]="option === 'cont-extra'">Conteudo-Extra</button>
     </li>
     <li>
-      <button (click)="changeOption('notas')" class="botao-nav ">Gerenciar Notas</button>
+      <button (click)="changeOption('notas')" class="botao-nav" [class.active]="option === 'notas'">Gerenciar
+        Notas</button>
     </li>
   </ul>
 </nav>

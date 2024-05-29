@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<nav class="nav-content">
+  <h2 class="text-center fs-2 text-white py-2">Postagens</h2>
+  <ul class="lista-nav">
+    <li>
+      <button (click)="changeOption('cont-extra')" class="botao-nav " [class.active]="option === 'cont-extra'">Conteúdo
+        Extra</button>
+    </li>
+    <li>
+      <button (click)="changeOption('atividade')" class="botao-nav "
+        [class.active]="option === 'atividade'">Atividades</button>
+    </li>
+    <li>
+      <button (click)="changeOption('notas')" class="botao-nav " [class.active]="option === 'notas'">Notas</button>
+    </li>
+  </ul>
+</nav>
+
+
+<section *ngIf="option ==='cont-extra'">
+  <app-form-cont-extra></app-form-cont-extra>
+</section>
+<section *ngIf="option ==='atividade'">
+  <app-form-atividades></app-form-atividades>
+</section>
+<section *ngIf="option==='notas'">
+</section>
+
+
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,93 @@
+<section>
+  <form [formGroup]="atividadeForm" class="d-flex flex-column justify-content-center p-2 gap-2">
+    <h2 class="text-center fs-3 text-white pt-1 px-2">Postagem de Conteúdo Extra</h2>
+    <div class="d-flex flex-column flex-wrap justify-content-center p-5 gap-5">
+      <mat-form-field>
+        <mat-label>Titulo:</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título">
+        <mat-error *ngIf="atividadeForm.get('titulo')?.errors?.['required'] && atividadeForm.touched">Titulo
+          Obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tipo de Conteúdo</mat-label>
+        <mat-select formControlName="tipoAtividade">
+          <mat-option (click)="resetaCamposQuestResp()" value="DESCRITIVA">Descritiva</mat-option>
+          <mat-option value="MULTIPLA_ESCOLHA">Multipla
+            Escolha</mat-option>
+        </mat-select>
+        <mat-error *ngIf="atividadeForm.get('tipoAtividade')?.errors?.['required'] && atividadeForm.touched">Tipo do
+          Conteúdo
+          é Obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enunciado:</mat-label>
+        <textarea matInput formControlName="enunciado"></textarea>
+
+        <mat-error *ngIf="atividadeForm.get('enunciado')?.errors?.['required'] && atividadeForm.touched">Descrição é
+          Obrigatória
+        </mat-error>
+        <mat-error *ngIf="atividadeForm.get('enunciado')?.errors?.['maxlength'] && atividadeForm.touched">Descrição
+          Ultrapassa limite de 800 caracteres!</mat-error>
+      </mat-form-field>
+      <p *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'DESCRITIVA'">Atividade Descritiva a Questoão é no
+        Enunciado!</p>
+
+      <div class="d-flex flex-wrap gap-4" *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'MULTIPLA_ESCOLHA'">
+
+        <mat-form-field>
+          <mat-label>Resposta A:</mat-label>
+          <input matInput formControlName="respA">
+          <mat-error *ngIf="atividadeForm.get('respA')?.errors?.['required'] && atividadeForm.touched">Resposta
+            Obrigatória</mat-error>
+          <mat-error *ngIf="atividadeForm.get('respA')?.errors?.['maxlength'] && atividadeForm.touched">ultrapassou o
+            limite de 100!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'MULTIPLA_ESCOLHA'">
+          <mat-label>Resposta B:</mat-label>
+          <input matInput formControlName="respB">
+          <mat-error *ngIf="atividadeForm.get('respB')?.errors?.['required'] && atividadeForm.touched">Resposta
+            Obrigatória</mat-error>
+          <mat-error *ngIf="atividadeForm.get('respB')?.errors?.['maxlength'] && atividadeForm.touched">ultrapassou o
+            limite de 100!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'MULTIPLA_ESCOLHA'">
+          <mat-label>Resposta C:</mat-label>
+          <input matInput formControlName="respC">
+          <mat-error *ngIf="atividadeForm.get('respC')?.errors?.['required'] && atividadeForm.touched">Resposta
+            Obrigatória</mat-error>
+          <mat-error *ngIf="atividadeForm.get('respC')?.errors?.['maxlength'] && atividadeForm.touched">ultrapassou o
+            limite de 100!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'MULTIPLA_ESCOLHA'">
+          <mat-label>Resposta D:</mat-label>
+          <input matInput formControlName="respD">
+          <mat-error *ngIf="atividadeForm.get('respD')?.errors?.['required'] && atividadeForm.touched">Resposta
+            Obrigatória</mat-error>
+          <mat-error *ngIf="atividadeForm.get('respD')?.errors?.['maxlength'] && atividadeForm.touched">ultrapassou o
+            limite de 100!</mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <mat-form-field *ngIf="atividadeForm.get('tipoAtividade')?.value  == 'MULTIPLA_ESCOLHA'">
+        <mat-label>Resposta Certa:</mat-label>
+        <input matInput formControlName="resposta" placeholder="Somente Letra Ex: C">
+        <mat-error *ngIf="atividadeForm.get('resposta')?.errors?.['required'] && atividadeForm.touched">Resposta
+          Obrigatória</mat-error>
+        <mat-error *ngIf="atividadeForm.get('resposta')?.errors?.['maxlength'] && atividadeForm.touched">Resposta
+          ultrapassa limite de 100 caracteres!</mat-error>
+
+      </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-center gap-2">
+      <button mat-button (click)="atividadeForm.reset()">Cancelar</button>
+      <button mat-flat-button [disabled]="atividadeForm.invalid" (click)="enviaForm()" color="primary">Enviar</button>
+    </div>
+  </form>
+</section>

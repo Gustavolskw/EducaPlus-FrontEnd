@@ -1,3 +1,6 @@
+import { TokenService } from './../../services/token.service';
+import { authGuard } from './../../guards/authGuard';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -15,14 +18,16 @@ export class AdministracaoComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
+    private tokenService: TokenService
   ) {
   }
 
 
   ngOnInit(): void {
+    this.checkSession();
     this.userService.returnUser().subscribe(user => {
-      console.log(user);
       this.role = user ? user.role : null;
       if (this.role != null) {
         if (this.role === 1) {
@@ -38,6 +43,16 @@ export class AdministracaoComponent implements OnInit {
 
   changeOption(selected: string) {
     this.option = selected
+  }
+
+  checkSession() {
+    this.authService.isAuthenticated(this.tokenService.getToken()).subscribe({
+      error: (erro) => {
+        if (erro.status === 500) {
+          this.userService.logout();
+        }
+      }
+    })
   }
 
 

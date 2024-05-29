@@ -26,6 +26,7 @@ export class ManageAtividadesComponent implements OnInit {
   recebeu: boolean = false;
   atividadesList: Atividade[] = [];
   todas: materia = { 'materiaName': 'TODAS', 'materiaId': 100 }
+  selectedMateria: string = "";
 
   constructor(
     private atividadeService: AtividadeService,
@@ -162,7 +163,7 @@ export class ManageAtividadesComponent implements OnInit {
         toast.onmouseleave = Swal.resumeTimer;
       }
     });
-    console.log(materia);
+    this.selectedMateria = materia;
     if (materia === "TODAS") {
       this.filteredAtividades = this.atividadesList;
     } else {
@@ -217,6 +218,7 @@ export class ManageAtividadesComponent implements OnInit {
             title: "Atividade excluida com sucesso!"
           });
           this.buscarAtividades();
+          this.buscaMateriasComAtividade();
         },
         error: (err) => {
           Toast.fire({

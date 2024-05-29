@@ -1,13 +1,10 @@
-div {
-  div {
-    button {
-      border: 0;
-      background-color: white;
-      padding: 1rem 0;
-    }
-    button:focus {
-      background-color: rgba(231, 231, 231, 0.662);
-      border-bottom: 3px solid blue;
-    }
-  }
+button {
+  border: 0;
+  background-color: white;
+  padding: 1rem 0;
+}
+
+button.active {
+  background-color: rgba(231, 231, 231, 0.662);
+  border-bottom: 3px solid blue;
 }
