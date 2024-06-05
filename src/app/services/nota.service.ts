@@ -20,6 +20,10 @@ export class NotaService {
     return this.httpClient.get<NotaBusca[]>(`${this.apiUrl}/${userId}`);
   }
 
+  listarTodasNotasPorMateria(materia: string): Observable<NotaBusca[]> {
+    return this.httpClient.get<NotaBusca[]>(`${this.apiUrl}/materia/${materia}`);
+  }
+
   editarNota(notaId: number, updateNota: NotaPostUpdate, token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': token

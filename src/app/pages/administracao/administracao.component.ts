@@ -4,6 +4,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { RelatoriosService } from 'src/app/services/relatorios.service';
 
 @Component({
   selector: 'app-administracao',
@@ -20,7 +21,7 @@ export class AdministracaoComponent implements OnInit {
   constructor(private router: Router,
     private userService: UserService,
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
   ) {
   }
 
@@ -39,6 +40,16 @@ export class AdministracaoComponent implements OnInit {
         }
       }
     });
+    if (this.role === 2) {
+      this.router.navigateByUrl('/atividades')
+    }
+
+
+    if (this.role === 0) {
+      this.option = "users";
+    } else if (this.role === 1) {
+      this.option = "atividade"
+    }
   }
 
   changeOption(selected: string) {
@@ -54,6 +65,4 @@ export class AdministracaoComponent implements OnInit {
       }
     })
   }
-
-
 }

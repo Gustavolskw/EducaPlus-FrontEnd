@@ -6,6 +6,8 @@
         <textarea matInput formControlName="resposta"></textarea>
         <mat-error *ngIf="respostaForm.get('resposta')?.errors?.['required'] && respostaForm.touched">Campo de Resposta
           necessario!</mat-error>
+        <mat-error *ngIf="respostaForm.get('resposta')?.errors?.['maxlength'] && respostaForm.touched">Resposta
+          Ultrapassa limite de 200 caracteres!</mat-error>
       </mat-form-field>
     </div>
     <div class="m-escolha" *ngIf="tipoAtividade === 1">

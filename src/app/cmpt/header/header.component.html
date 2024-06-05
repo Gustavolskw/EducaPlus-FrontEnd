@@ -5,9 +5,14 @@
       EducaPlus</a>
   </div>
   <div class="d-flex justify-content-center gap-md-3 gap-lg-5 gap-sm-2" *ngIf="loginPage">
-    <div class="d-flex align-items-center">
-      <p class="text-center justify-content-center pt-2">{{userName}} </p>
-      <i class="bi bi-person"></i>
+    <div class="d-flex pt-2">
+      <div class="d-flex align-items-center flex-column">
+        <p class="pt-2 text-center">{{userName}} <br> <strong>{{status}}</strong>
+          <br>
+          <strong *ngIf="materiaDoProfessor!=null">{{materiaDoProfessor}}</strong>
+        </p>
+      </div>
+      <a href="" class="text-black"><i class="bi bi-person"></i></a>
     </div>
     <a class="pt-2 text-black" (click)="logout()"><i class="bi bi-box-arrow-right logo-logout"></i></a>
   </div>
@@ -21,15 +26,15 @@
       <button [routerLink]="['/atividades']" class="botao-nav ">Atividades</button>
     </li>
     <li>
-      <button class="botao-nav ">Notas</button>
+      <button class="botao-nav " [routerLink]="['/notas']">Notas</button>
     </li>
     <li>
       <button [routerLink]="['/adminstracao']" class="botao-nav "
-        *ngIf="status === 'ADMIN' || status==='STAFF'">Administração</button>
+        *ngIf="status === 'Admin' || status==='Professor'">Administração</button>
     </li>
     <li>
-      <button [routerLink]="['/postagens']" class="botao-nav "
-        *ngIf="status === 'ADMIN' || status==='STAFF'">Postar</button>
+      <button [routerLink]="['/postar-avaliar']" class="botao-nav "
+        *ngIf="status === 'Admin' || status==='Professor'">Postar/Avaliar</button>
     </li>
   </ul>
 </nav>

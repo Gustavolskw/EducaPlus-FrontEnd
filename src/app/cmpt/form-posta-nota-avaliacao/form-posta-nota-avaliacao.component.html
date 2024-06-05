@@ -1,0 +1,21 @@
+<section class="py-4 mx-2" *ngIf="!mensagemErro">
+  <div class="d-flex row  gap-2 mx-2">
+    <div class="col-12" *ngFor="let resposta of listaAtividadesResolvidas">
+      <div class="d-flex justify-content-between flex-wrap border border-1 rounded border-black px-2 py-2">
+        <h5 class="">{{resposta.atividade}}</h5>
+        <p>Tipo: {{resposta.tipoDeAtividade}}</p>
+        <p>Aluno: {{resposta.usuario}}</p>
+        <p> Materia: {{resposta.materia}}</p>
+        <button class="me-2 border-0 rounded px-2" (click)="openDialog(resposta, '0ms', '0ms')">Avaliar</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section
+  class="d-flex h-100 pb-5  flex-column justify-content-center align-content-center gap-3 text-center align-content-center align-items-center erro-sem-cont"
+  *ngIf="mensagemErro">
+  <mat-icon matPrefix>
+    folder_off
+  </mat-icon>
+  <mat-error>{{mensagemErro}}</mat-error>
+</section>

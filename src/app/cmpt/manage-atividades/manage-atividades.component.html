@@ -1,8 +1,7 @@
-<div class="row border-bottom border-3">
+<div class="row border-bottom border-3 w-100">
   <div class="col-6 col-md-4 col-xxl-6" *ngFor="let materia of materiasHasAtividade">
-    <button class="text-center w-100" (click)="setfilter(materia.materiaName)"
-      [class.active]="materia.materiaName === selectedMateria">
-      {{materia.materiaName}}</button>
+    <button class="text-center w-100" (click)="setfilter(materia)" [class.active]="materia === selectedMateria">
+      {{materia}}</button>
   </div>
 </div>
 
@@ -30,10 +29,13 @@
       <p id="enunciado">{{atividade.enunciado}}</p>
       <label for="quest" *ngIf="atividade.questoes != null">Questão:</label>
       <p id="quest" *ngIf="atividade.questoes != null">{{atividade.questoes}}</p>
+      <p>Materia do Usuario: {{userMateria}}</p>
     </div>
     <div class="d-flex flex-wrap gap-3">
-      <button mat-raised-button color="primary" (click)="openDialog(atividade, '0ms', '0ms')">Editar</button>
-      <button mat-raised-button color="warn" (click)="removeAtividade(atividade.idAtividade)">Excluir</button>
+      <button mat-raised-button color="primary" [disabled]="userMateria != atividade.materia && userRole != 0"
+        (click)="openDialog(atividade, '0ms', '0ms')">Editar</button>
+      <button mat-raised-button color="warn" [disabled]="userMateria != atividade.materia && userRole != 0"
+        (click)="removeAtividade(atividade.idAtividade)">Excluir</button>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

@@ -23,6 +23,6 @@
 
 <section class="justify-content-center border-1 border-top border-black" *ngIf="!semFeedback">
   <h2 class="text-center py-3">FeedBacks</h2>
-  <app-card-feedback [FeedbacksLista]="feedbacksLista"></app-card-feedback>
+  <app-card-feedback [FeedbacksLista]="feedbacksLista" (feedbackRemovido)="feedbackRemovido()"></app-card-feedback>
 </section>
 <app-footer></app-footer>

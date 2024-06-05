@@ -21,12 +21,15 @@ export class ManageAtividadesComponent implements OnInit {
   token!: string;
   userRole!: number | null;
   userName!: string | null;
-  materiasHasAtividade!: materia[];
+  materiasHasAtividade: string[] = [];
   filteredAtividades: Atividade[] = [];
   recebeu: boolean = false;
   atividadesList: Atividade[] = [];
-  todas: materia = { 'materiaName': 'TODAS', 'materiaId': 100 }
+  todas: materia = { 'materiaName': 'TODAS', 'materiaId': 100 };
   selectedMateria: string = "";
+  userMateria!: string;
+  userId!: number | null;
+  materiasDasAtividades: string[] = [];
 
   constructor(
     private atividadeService: AtividadeService,
@@ -39,9 +42,11 @@ export class ManageAtividadesComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.tokenService.getToken();
     this.buscarUser();
+    this.buscaMateriaDoProfessor();
     this.buscarAtividades();
-    this.buscaMateriasComAtividade();
+
   }
+
   buscarUser() {
     const Toast = Swal.mixin({
       toast: true,
@@ -58,6 +63,7 @@ export class ManageAtividadesComponent implements OnInit {
       next: (user) => {
         this.userName = user ? user?.sub : null;
         this.userRole = user ? user?.role : null;
+        this.userId = user ? user.id : null;
       },
       error: (err) => {
         Toast.fire({
@@ -68,7 +74,8 @@ export class ManageAtividadesComponent implements OnInit {
     });
   }
 
-  buscaMateriasComAtividade(): void {
+  buscaMateriasComAtividade(materias: string[]): void {
+    /*
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -83,7 +90,6 @@ export class ManageAtividadesComponent implements OnInit {
 
     this.materiaService.listarMateriasComAtividade().subscribe({
       next: (materias) => {
-        console.log(materias);
         if (materias.length === 0) {
           this.recebeu = true;
           this.materiasHasAtividade = [];
@@ -101,6 +107,17 @@ export class ManageAtividadesComponent implements OnInit {
         });
       }
     });
+    */
+    this.materiasHasAtividade = []
+    materias.forEach(item => {
+
+      if (!this.materiasHasAtividade.includes(item)) {
+        this.materiasHasAtividade.push(item)
+      }
+    })
+
+
+
   }
 
   buscarAtividades(): void {
@@ -125,6 +142,14 @@ export class ManageAtividadesComponent implements OnInit {
           this.atividadesList = lista;
           this.setfilter("");
           this.semAtividades = false;
+          this.materiasDasAtividades = []
+          lista.forEach(item => {
+
+            if (!this.materiasDasAtividades.includes(item.materia)) {
+              this.materiasDasAtividades.push(item.materia);
+            }
+          });
+          this.buscaMateriasComAtividade(this.materiasDasAtividades);
         }
       },
       error: (err) => {
@@ -182,8 +207,20 @@ export class ManageAtividadesComponent implements OnInit {
     }
   }
 
-  async removeAtividade(atividadeId: string) {
+  buscaMateriaDoProfessor() {
+    if (this.userId) {
+      this.materiaService.listaMateriaPorUserid(this.userId).subscribe({
+        next: (materia) => {
+          this.userMateria = materia.materiaName;
+        },
+        error: (err) => {
+          this.userMateria = "";
+        }
+      });
+    }
+  }
 
+  async removeAtividade(atividadeId: string) {
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -218,7 +255,6 @@ export class ManageAtividadesComponent implements OnInit {
             title: "Atividade excluida com sucesso!"
           });
           this.buscarAtividades();
-          this.buscaMateriasComAtividade();
         },
         error: (err) => {
           Toast.fire({
@@ -228,9 +264,6 @@ export class ManageAtividadesComponent implements OnInit {
         }
       });
     }
-
-
-
   }
 
 

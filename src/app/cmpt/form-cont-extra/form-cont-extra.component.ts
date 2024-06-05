@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class FormContExtraComponent implements OnInit {
 
-
+  userRole!: number | null;
   contExtraForm!: FormGroup;
   userId!: number | null;
   userName!: string | null;
@@ -75,8 +75,15 @@ export class FormContExtraComponent implements OnInit {
     this.userService.returnUser().subscribe({
       next: (user) => {
         this.userId = user ? user.id : null;
+        this.userRole = user ? user.role : null;
         this.userName = user ? user.sub : null;
         this.contExtraForm.patchValue({ professor: this.userId });
+        if (this.userRole != 1) {
+          this.contExtraForm.get('titulo')?.disable()
+          this.contExtraForm.get('conteudo')?.disable()
+          this.contExtraForm.get('descricao')?.disable()
+        }
+
         this.buscaMateriaDoAvaliador();
       },
       error: (err) => {
@@ -108,10 +115,12 @@ export class FormContExtraComponent implements OnInit {
           this.contExtraForm.patchValue({ materia: this.userMateria });
         },
         error: (err) => {
-          Toast.fire({
-            icon: "error",
-            title: err.error.error
-          });
+          if (this.userRole === 1) {
+            Toast.fire({
+              icon: "error",
+              title: err.error.error
+            });
+          }
         }
       });
     }

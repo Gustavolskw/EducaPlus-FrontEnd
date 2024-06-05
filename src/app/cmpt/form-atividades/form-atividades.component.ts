@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class FormAtividadesComponent {
   atividadeForm!: FormGroup;
   userId!: number | null;
+  userRole!: number | null;
   userName!: string | null;
   userMateria!: string | null;
   token!: string;
@@ -84,7 +85,13 @@ export class FormAtividadesComponent {
       next: (user) => {
         this.userId = user ? user.id : null;
         this.userName = user ? user.sub : null;
+        this.userRole = user ? user.role : null;
         this.atividadeForm.patchValue({ professor: this.userId });
+        if (this.userRole != 1) {
+          this.atividadeForm.get('titulo')?.disable()
+          this.atividadeForm.get('tipoAtividade')?.disable()
+          this.atividadeForm.get('enunciado')?.disable()
+        }
         this.buscaMateriaDoAvaliador();
       },
       error: (err) => {
@@ -116,10 +123,12 @@ export class FormAtividadesComponent {
           this.atividadeForm.patchValue({ materia: this.userMateria });
         },
         error: (err) => {
-          Toast.fire({
-            icon: "error",
-            title: err.error.error
-          });
+          if (this.userRole === 1) {
+            Toast.fire({
+              icon: "error",
+              title: err.error.error
+            });
+          }
         }
       });
     }
@@ -137,15 +146,26 @@ export class FormAtividadesComponent {
         toast.onmouseleave = Swal.resumeTimer;
       }
     });
-    const questoesRef = `A)${this.atividadeForm.get('respA')?.value}  B)${this.atividadeForm.get('respB')?.value}  C)${this.atividadeForm.get('respC')?.value}  D)${this.atividadeForm.get('respD')?.value}`
-    this.atividadeForm.patchValue({ questoes: questoesRef });
-    this.atividadeForm.removeControl('respA');
-    this.atividadeForm.removeControl('respB');
-    this.atividadeForm.removeControl('respC');
-    this.atividadeForm.removeControl('respD');
 
-    console.log(this.atividadeForm.get('questoes')?.value);
+    if (this.atividadeForm.get('tipoAtividade')?.value === 'DESCRITIVA') {
+      this.atividadeForm.removeControl('respA');
+      this.atividadeForm.removeControl('respB');
+      this.atividadeForm.removeControl('respC');
+      this.atividadeForm.removeControl('respD');
+      this.atividadeForm.patchValue({ questoes: "" });
+      this.atividadeForm.patchValue({ resposta: "" });
+    } else if (this.atividadeForm.get('tipoAtividade')?.value === 'MULTIPLA_ESCOLHA') {
+      const questoesRef = `A)${this.atividadeForm.get('respA')?.value}  B)${this.atividadeForm.get('respB')?.value}  C)${this.atividadeForm.get('respC')?.value}  D)${this.atividadeForm.get('respD')?.value}`
+      this.atividadeForm.patchValue({ questoes: questoesRef });
+      this.atividadeForm.removeControl('respA');
+      this.atividadeForm.removeControl('respB');
+      this.atividadeForm.removeControl('respC');
+      this.atividadeForm.removeControl('respD');
 
+      console.log(this.atividadeForm.get('questoes')?.value);
+    }
+
+    console.log(this.atividadeForm.value);
     if (this.atividadeForm.valid) {
       const novaAtividade = this.atividadeForm.getRawValue() as AtividadeCadastro
 
@@ -155,6 +175,11 @@ export class FormAtividadesComponent {
             icon: "success",
             title: "Atividade Cadastrada com sucesso!"
           });
+
+          this.atividadeForm.addControl('respA', this.fb.control(null));
+          this.atividadeForm.addControl('respB', this.fb.control(null));
+          this.atividadeForm.addControl('respC', this.fb.control(null));
+          this.atividadeForm.addControl('respD', this.fb.control(null));
           this.atividadeForm.patchValue({
             titulo: [null],
             tipoAtividade: [null],
@@ -162,6 +187,7 @@ export class FormAtividadesComponent {
             questoes: [null],
             resposta: [null],
           })
+
         },
         error: (err) => {
           Toast.fire({

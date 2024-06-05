@@ -1,43 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { MateriasService } from 'src/app/services/materias.service';
+import { NotaService } from 'src/app/services/nota.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
+import { NotaBusca } from 'src/app/types/interfaces';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-postagens',
-  templateUrl: './postagens.component.html',
-  styleUrls: ['./postagens.component.scss']
+  selector: 'app-notas-page',
+  templateUrl: './notas-page.component.html',
+  styleUrls: ['./notas-page.component.scss']
 })
-export class PostagensComponent implements OnInit {
-  option!: string
-  userRole!: number;
+export class NotasPageComponent implements OnInit {
+
+
+
 
   constructor(private router: Router,
     private userService: UserService,
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
   ) {
   }
 
   ngOnInit(): void {
     this.checkSession();
-    this.buscaUser();
-    if (this.userRole === 1) {
-
-      this.option = 'cont-extra'
-    } else if (this.userRole === 0) {
-      this.option = 'notas'
-    }
-  }
-
-  buscaUser() {
-    this.userService.returnUser().subscribe({
-      next: (user) => {
-        if (user)
-          this.userRole = user.role
-      }
-    })
   }
 
   checkSession() {
@@ -51,7 +40,7 @@ export class PostagensComponent implements OnInit {
     })
   }
 
-  changeOption(selected: string) {
-    this.option = selected
-  }
+
+
+
 }

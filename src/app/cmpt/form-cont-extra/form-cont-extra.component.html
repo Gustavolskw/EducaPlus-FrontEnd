@@ -1,5 +1,6 @@
 <section>
-  <form [formGroup]="contExtraForm" class="d-flex flex-column justify-content-center p-2 gap-2">
+  <form [class.opacity-25]="userRole != 1" [formGroup]="contExtraForm"
+    class="d-flex flex-column justify-content-center p-2 gap-2">
     <h2 class="text-center fs-3 text-white pt-1 px-2">Postagem de Conteúdo Extra</h2>
     <div class="d-flex flex-column flex-wrap justify-content-center p-5 gap-2">
       <mat-form-field>

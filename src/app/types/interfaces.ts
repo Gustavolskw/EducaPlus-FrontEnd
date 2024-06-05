@@ -65,6 +65,14 @@ export interface UserResponse {
   exp: number;
 }
 
+export interface Usuario {
+  id: number;
+  login: string;
+  role: string;
+  materia: string | null;
+  disponibilidade: boolean;
+}
+
 export interface CadastroUserAnalise {
   login: string;
   senha: string;
@@ -115,8 +123,17 @@ export interface NotaBusca {
   aluno: string;
   professor: string;
   nota: number
-
-
 }
 
+export interface RespostaAtividadeResolvida {
+  idResposta: string,
+  atividade: string,
+  tipoDeAtividade: string
+  materia: string,
+  enunciado: string,
+  questoes: string;
+  resposta: string,
+  respostaCerta: string,
+  usuario: string,
+}
 

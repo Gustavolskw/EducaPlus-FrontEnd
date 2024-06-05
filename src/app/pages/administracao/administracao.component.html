@@ -3,8 +3,14 @@
   <h2 class="text-center fs-2 text-white py-2">Administração</h2>
   <ul class="lista-nav">
     <li *ngIf="status === 'ADMIN'">
+      <button (click)="changeOption('users')" class="botao-nav " [class.active]="option === 'users'">Usuarios</button>
+    </li>
+    <li *ngIf="status === 'ADMIN'">
       <button (click)="changeOption('apr/rep')" class="botao-nav "
         [class.active]="option === 'apr/rep'">Aprova/Reprova-Usuario</button>
+    </li>
+    <li *ngIf="status === 'ADMIN'">
+      <button (click)="changeOption('rela')" class="botao-nav " [class.active]="option === 'rela'">Relatorios</button>
     </li>
     <li>
       <button (click)="changeOption('atividade')" class="botao-nav "
@@ -20,18 +26,22 @@
     </li>
   </ul>
 </nav>
-<section *ngIf="!option">
-  <h2 class="text-center">Seja Bem Vindo a pagina de Administração!</h2>
+<section class="h-100" *ngIf="option==='users'">
+  <app-users-manage></app-users-manage>
 </section>
-<section class="user-analise" *ngIf="option==='apr/rep'">
+<section class="h-100" class="user-analise" *ngIf="option==='apr/rep'">
   <app-container-user-analise></app-container-user-analise>
 </section>
-<section *ngIf="option==='atividade'">
+<section class="h-100" *ngIf="option==='atividade'">
   <app-manage-atividades></app-manage-atividades>
 </section>
-<section *ngIf="option==='cont-extra'">
+<section class="h-100" *ngIf="option==='cont-extra'">
   <app-manage-cont-extra></app-manage-cont-extra>
 </section>
-<section *ngIf="option==='notas'">
+<section class="h-100" *ngIf="option==='notas'">
   <app-manage-notas></app-manage-notas>
 </section>
+<section class="h-100" *ngIf="option==='rela'">
+  <app-relatorios></app-relatorios>
+</section>
+<app-footer></app-footer>

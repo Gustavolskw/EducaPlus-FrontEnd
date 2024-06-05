@@ -12,4 +12,16 @@ export class formValidators {
       return null
     }
   }
+
+  static notaValid() {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const fieldValue = control.value
+
+
+      if (fieldValue > 10 || fieldValue < 0) {
+        return { notaValid: true }
+      }
+      return null
+    }
+  }
 }

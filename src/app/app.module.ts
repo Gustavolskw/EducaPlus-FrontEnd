@@ -54,6 +54,12 @@ import { UpdateNotasDialogComponent } from './cmpt/manage-notas/update-notas-dia
 import { PostagensComponent } from './pages/postagens/postagens.component';
 import { FormContExtraComponent } from './cmpt/form-cont-extra/form-cont-extra.component';
 import { FormAtividadesComponent } from './cmpt/form-atividades/form-atividades.component';
+import { FormPostaNotaAvaliacaoComponent } from './cmpt/form-posta-nota-avaliacao/form-posta-nota-avaliacao.component';
+import { PostaNotaDialogComponent } from './cmpt/form-posta-nota-avaliacao/posta-nota-dialog/posta-nota-dialog.component';
+import { NotasPageComponent } from './pages/notas-page/notas-page.component';
+import { NotasContainerComponent } from './cmpt/notas-container/notas-container.component';
+import { UsersManageComponent } from './cmpt/users-manage/users-manage.component';
+import { RelatoriosComponent } from './cmpt/relatorios/relatorios.component';
 
 
 
@@ -86,6 +92,12 @@ import { FormAtividadesComponent } from './cmpt/form-atividades/form-atividades.
     PostagensComponent,
     FormContExtraComponent,
     FormAtividadesComponent,
+    FormPostaNotaAvaliacaoComponent,
+    PostaNotaDialogComponent,
+    NotasPageComponent,
+    NotasContainerComponent,
+    UsersManageComponent,
+    RelatoriosComponent,
   ],
   imports: [
     BrowserModule,

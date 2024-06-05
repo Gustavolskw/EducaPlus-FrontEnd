@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConteudoExtraService } from 'src/app/services/conteudo-extra.service';
 import { TokenService } from 'src/app/services/token.service';
+import { UserService } from 'src/app/services/user.service';
 import { contExtra, UpdateConteudoExtra } from 'src/app/types/interfaces';
 import Swal from 'sweetalert2';
 
@@ -19,7 +20,8 @@ export class UpdateContExtraDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { conteudoExtra: contExtra },
     private fb: FormBuilder,
     private conteudoExtraService: ConteudoExtraService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {

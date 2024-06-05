@@ -130,8 +130,11 @@ export class AtividadesSelectComponent implements OnInit {
     this.feedbacksLista = [];
     this.buscaFeedbacks();
   }
-
-
-
-
+  feedbackRemovido() {
+    this.feedbacksLista = [];
+    if (this.feedbacksLista.length == 0) {
+      this.semFeedback = true;
+    }
+    this.buscaFeedbacks();
+  }
 }

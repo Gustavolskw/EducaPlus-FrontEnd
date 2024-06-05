@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Observable, tap } from 'rxjs';
+import { Usuario } from '../types/interfaces';
 
 interface authResponse {
   token: string
@@ -38,4 +39,9 @@ export class AuthService {
     })
     return this.http.get<any>(`${this.apiUrl}/teste/token`, { headers })
   }
+
+  listaTodosUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/auth/usuarios`);
+  }
+
 }

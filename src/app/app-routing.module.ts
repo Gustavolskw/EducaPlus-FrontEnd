@@ -9,6 +9,7 @@ import { AdministracaoComponent } from './pages/administracao/administracao.comp
 import { AtividadesSelectComponent } from './pages/atividades-select/atividades-select.component';
 import { authGuard } from './guards/authGuard';
 import { PostagensComponent } from './pages/postagens/postagens.component';
+import { NotasPageComponent } from './pages/notas-page/notas-page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: "notas",
+    component: NotasPageComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: "atividades/:id",
     component: AtividadesSelectComponent,
     canActivate: [authGuard]
@@ -40,7 +46,7 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: "postagens",
+    path: "postar-avaliar",
     component: PostagensComponent,
     canActivate: [authGuard]
   },
