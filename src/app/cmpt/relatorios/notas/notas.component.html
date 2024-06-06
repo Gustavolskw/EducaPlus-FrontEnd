@@ -1,0 +1,25 @@
+<div class="col-lg-8 col-md-10 col-sm-12 m-auto ">
+  <p class="text-center">Relatório de Notas dos alunos, para poder verificar o rendimento de cada aluno por matéria.</p>
+  <form [formGroup]="dateRangeForm" class="d-flex flex-column flex-wrap">
+    <mat-form-field>
+      <mat-label>Entre o periodo de busca</mat-label>
+      <mat-date-range-input [rangePicker]="picker" formGroupName="dateRange">
+        <input matStartDate formControlName="start" placeholder="Dia Inicio">
+        <input matEndDate formControlName="end" placeholder="Dia Final">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-error
+        *ngIf="dateRangeForm.get('dateRange.start')?.hasError('required') && dateRangeForm.get('dateRange.start')?.touched">
+        Data Inicial Nao preenchida
+      </mat-error>
+      <mat-error
+        *ngIf="dateRangeForm.get('dateRange.end')?.hasError('required') && dateRangeForm.get('dateRange.end')?.touched">
+        Data Final Nao preenchida
+      </mat-error>
+    </mat-form-field>
+    <button type="button" [disabled]="dateRangeForm.invalid" class="btn btn-success"
+      (click)="gerarRelatorioDeNotas()">Gerar</button>
+  </form>
+</div>

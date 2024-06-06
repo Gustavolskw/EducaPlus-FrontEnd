@@ -1,0 +1,27 @@
+<div class="col-lg-8 col-md-10 col-sm-12 m-auto ">
+  <p class="text-center">Relatório de Postagens de atividades de cada professor em sua devida Materia, visa ver a
+    contribuição e a dedicação de cada profissional em relação a postagens de suas Atividades</p>
+  <form [formGroup]="postDateRangeForm" class="d-flex flex-column flex-wrap">
+    <mat-form-field>
+      <mat-label>Entre o periodo de busca</mat-label>
+      <mat-date-range-input [rangePicker]="picker" formGroupName="postDateRange">
+        <input matStartDate formControlName="postStart" placeholder="Dia Inicio">
+        <input matEndDate formControlName="postEnd" placeholder="Dia Final">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-error
+        *ngIf="postDateRangeForm.get('postDateRange.postStart')?.hasError('required') && postDateRangeForm.get('postDateRange.postStart')?.touched">
+        Data Inicial Nao preenchida
+      </mat-error>
+      <mat-error
+        *ngIf="postDateRangeForm.get('postDateRange.postEnd')?.hasError('required') && postDateRangeForm.get('postDateRange.postEnd')?.touched">
+        Data Final Nao preenchida
+      </mat-error>
+    </mat-form-field>
+
+    <button type=" button" [disabled]="postDateRangeForm.invalid" class="btn btn-success"
+      (click)="gerarRelatorioDePostagensProfessor()">Gerar</button>
+  </form>
+</div>
