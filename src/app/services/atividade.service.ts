@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Atividade, AtividadeCadastro, AtividadeUpdate } from '../types/interfaces';
+import { Atividade, AtividadeCadastro, AtividadeUpdate, DatasAtividades } from '../types/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class AtividadeService {
 
   listar(): Observable<Atividade[]> {
     return this.httpClient.get<Atividade[]>(`${this.apiUrl}/list`)
+  }
+
+  listarDatas(): Observable<DatasAtividades[]> {
+    return this.httpClient.get<DatasAtividades[]>(`${this.apiUrl}/datas`)
   }
 
   listarPorId(id: string | null): Observable<Atividade> {

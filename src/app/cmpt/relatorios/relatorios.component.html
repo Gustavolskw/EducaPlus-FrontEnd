@@ -1,33 +1,42 @@
-<h2 class="text-center my-4">Relatorios</h2>
-<div class="btn-group justify-content-center d-flex" role="group" aria-label="Basic example">
-  <button type="button" class="btn  btn-outline-primary" (click)="changeOption('exp-alunos')">Experiencia dos
+<h2 class="text-center my-4">Relatórios</h2>
+<div class="btn-group justify-content-center d-flex flex-wrap mx-3" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-outline-primary" [class.active]="option === 'exp-alunos'"
+    (click)="changeOption('exp-alunos')">Experiência dos
     Alunos</button>
-  <button type="button" class="btn  btn-outline-primary" (click)="changeOption('part-alunos')">Participação dos
+  <button type="button" class="btn btn-outline-primary" [class.active]="option === 'part-alunos'"
+    (click)="changeOption('part-alunos')">Participação dos
     Alunos</button>
-  <button type="button" class="btn  btn-outline-primary" (click)="changeOption('notas')">Notas</button>
-  <button type="button" class="btn  btn-outline-primary" (click)="changeOption('post-professor')">Postagens por
+  <button type="button" class="btn btn-outline-primary" [class.active]="option === 'notas'"
+    (click)="changeOption('notas')">Notas</button>
+  <button type="button" class="btn btn-outline-primary" [class.active]="option === 'post-professor'"
+    (click)="changeOption('post-professor')">Postagens por
     Professor</button>
 </div>
 
-
-<section *ngIf="option==='exp-alunos'" class="my-5 px-3 d-flex justify-content-center flex-column">
-  <p class="text-center">Relatorio De Experiencia dos alunos nas atividades de cada materia, visa ver qual materia vem
-    enfrentando mais
-    reclamações e poder alinhar com os professores para mudar o que precisar para melhorar e experiencia dos alunos</p>
-  <button type="button" class="btn btn-outline-success" (click)="gerarRelatorioDeFeedback()">Gerar</button>
+<section *ngIf="option === 'exp-alunos'" class="my-5 px-3 d-flex justify-content-center flex-column col row">
+  <div class="col-lg-8 col-md-10 col-sm-12 m-auto ">
+    <p class="text-center">Relatório de Experiência dos alunos nas atividades de cada matéria, visa ver qual matéria vem
+      enfrentando mais reclamações e poder alinhar com os professores para mudar o que precisar para melhorar a
+      experiência dos alunos.</p>
+    <button type="button" class="btn btn-outline-success w-100" (click)="gerarRelatorioDeFeedback()">Gerar</button>
+  </div>
 </section>
 
-<section *ngIf="option==='part-alunos'" class="my-5 px-3 d-flex justify-content-center flex-column">
-  <p class="text-center">Relatorio De Participação dos alunos nas atividades de cada materia, visa ver qual a
-    porcentagem de realização de atividades de cada aluno, assim de forma a poder cobrar a maior participação de alunos
-    especificos.</p>
-  <button type="button" class="btn btn-outline-success" (click)="gerarRelatorioDeParticipacaoAlunos()">Gerar</button>
+<section *ngIf="option === 'part-alunos'" class="my-5 px-3 d-flex justify-content-center flex-column col row">
+  <div class="col-lg-8 col-md-10 col-sm-12 m-auto ">
+    <p class="text-center">Relatório de Participação dos alunos nas atividades de cada matéria, visa ver qual a
+      porcentagem de realização de atividades de cada aluno, assim de forma a poder cobrar a maior participação de
+      alunos
+      específicos.</p>
+    <button type="button" class="btn btn-outline-success w-100"
+      (click)="gerarRelatorioDeParticipacaoAlunos()">Gerar</button>
+  </div>
 </section>
 
-<section>
-
+<section *ngIf="option === 'notas'" class="my-5 px-3 d-flex justify-content-center flex-column col row">
+  <app-notas></app-notas>
 </section>
 
-<section>
-
+<section *ngIf="option === 'post-professor'" class="my-5 px-3 d-flex justify-content-center flex-column col row">
+  <app-post-professor></app-post-professor>
 </section>

@@ -60,6 +60,8 @@ import { NotasPageComponent } from './pages/notas-page/notas-page.component';
 import { NotasContainerComponent } from './cmpt/notas-container/notas-container.component';
 import { UsersManageComponent } from './cmpt/users-manage/users-manage.component';
 import { RelatoriosComponent } from './cmpt/relatorios/relatorios.component';
+import { NotasComponent } from './cmpt/relatorios/notas/notas.component';
+import { PostProfessorComponent } from './cmpt/relatorios/post-professor/post-professor.component';
 
 
 
@@ -98,6 +100,8 @@ import { RelatoriosComponent } from './cmpt/relatorios/relatorios.component';
     NotasContainerComponent,
     UsersManageComponent,
     RelatoriosComponent,
+    NotasComponent,
+    PostProfessorComponent,
   ],
   imports: [
     BrowserModule,

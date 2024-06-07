@@ -137,3 +137,18 @@ export interface RespostaAtividadeResolvida {
   usuario: string,
 }
 
+export interface DatasAtividades {
+  data: string;
+  dia: number;
+  mes: number;
+  ano: number;
+}
+
+export interface DatasAtividadesSender {
+  diaInit: number;
+  diaFim: number;
+  mesInicial: number;
+  mesFinal: number;
+  anoBusca: number;
+}
+
