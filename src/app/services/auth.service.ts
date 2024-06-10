@@ -40,8 +40,5 @@ export class AuthService {
     return this.http.get<any>(`${this.apiUrl}/teste/token`, { headers })
   }
 
-  listaTodosUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.apiUrl}/auth/usuarios`);
-  }
 
 }
