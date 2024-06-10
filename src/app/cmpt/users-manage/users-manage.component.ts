@@ -79,7 +79,7 @@ export class UsersManageComponent implements OnInit {
       }
     });
 
-    this.authService.listaTodosUsers().subscribe({
+    this.userService.listaTodosUsers().subscribe({
       next: (lista) => {
         if (lista.length === 0) {
           this.userList = [];

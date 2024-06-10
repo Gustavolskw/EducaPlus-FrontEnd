@@ -1,6 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AtividadeService } from 'src/app/services/atividade.service';
+import { UserService } from 'src/app/services/user.service';
 import { Atividade } from 'src/app/types/interfaces';
 
 @Component({
@@ -14,18 +15,27 @@ export class CardAtividadeComponent {
   filteredAtividades: Atividade[] = [];
   recebeu: boolean = false;
   semNadaPostado!: string | null;
-
+  userId!: number | null;
 
 
 
 
   constructor(
     private atividadeService: AtividadeService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.fetchContent();
+  }
+
+  buscaUser() {
+    this.userService.returnUser().subscribe({
+      next: (user) => {
+        this.userId = user ? user.id : null;
+      }
+    });
   }
 
 

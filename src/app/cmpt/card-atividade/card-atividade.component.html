@@ -1,5 +1,10 @@
 <section class="d-flex flex-wrap justify-content-center gap-5 py-5" *ngIf="recebeu===true">
   <mat-card class="example-card" *ngFor="let atividade of filteredAtividades; let i = index">
+    <span class="position-absolute top-0 start-100 translate-middle  border-0">
+      <mat-icon class="text-danger border-0">
+        check_circle
+      </mat-icon>
+    </span>
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{atividade.titulo}}</mat-card-title>

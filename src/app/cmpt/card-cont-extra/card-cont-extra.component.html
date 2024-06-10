@@ -1,6 +1,6 @@
-<section class="d-flex flex-wrap justify-content-center gap-5" *ngIf="recebeu===true">
+<section class="d-flex flex-wrap justify-content-center gap-5 " *ngIf="recebeu===true">
   <mat-card class="example-card" *ngFor="let contExtra of filteredConteudoExtra; let i = index">
-    <mat-card-header>
+    <mat-card-header *ngIf="!contExtra.videoUrl">
       <mat-card-title-group>
         <mat-card-title>{{contExtra.titulo}}</mat-card-title>
         <mat-card-subtitle>{{contExtra.materia}}</mat-card-subtitle>
@@ -10,13 +10,15 @@
     <div *ngIf="contExtra.videoUrl">
 
       <iframe width="300" height="200" [src]="safeUrls[i]" frameborder=" 0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; " allowfullscreen></iframe>
     </div>
 
     <mat-card-content *ngIf="contExtra.Descricao">
       {{contExtra.Descricao}}
+
     </mat-card-content>
+    <mat-card-title *ngIf="contExtra.videoUrl">{{contExtra.titulo}}</mat-card-title>
+    <p>{{contExtra.materia}}</p>
     <p>Professor: {{contExtra.professor}}</p>
   </mat-card>
 </section>
