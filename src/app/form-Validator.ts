@@ -12,6 +12,19 @@ export class formValidators {
       return null
     }
   }
+  static notEqualTo(otherField: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const fieldValue = control.value
+      const otherFieldValue = control.root.get(otherField)?.value
+
+      if (fieldValue == otherFieldValue) {
+        return { notEqualTo: true }
+
+      }
+      return null
+
+    }
+  }
 
   static notaValid() {
     return (control: AbstractControl): ValidationErrors | null => {

@@ -1,3 +1,5 @@
+import { userLogin } from './../../types/interfaces';
+import { UserService } from './../../services/user.service';
 import { TokenService } from './../../services/token.service';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FeedbackService } from 'src/app/services/feedback.service';
@@ -10,18 +12,34 @@ import Swal from 'sweetalert2';
   templateUrl: './card-feedback.component.html',
   styleUrls: ['./card-feedback.component.scss']
 })
-export class CardFeedbackComponent {
+export class CardFeedbackComponent implements OnInit {
 
 
   @Input() FeedbacksLista!: FeedBackResponse[];
   @Output() feedbackRemovido = new EventEmitter();
+  userlogin!: string | null;
+  userRole!: number | null;
 
   constructor(private feedbackService: FeedbackService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UserService
   ) {
 
   }
+  ngOnInit(): void {
+    this.buscaUser();
+  }
 
+
+
+  buscaUser() {
+    this.userService.returnUser().subscribe({
+      next: (user) => {
+        this.userlogin = user ? user.sub : null;
+        this.userRole = user ? user.role : null;
+      }
+    })
+  }
   removeFeedback(feedbackId: string) {
     const Toast = Swal.mixin({
       toast: true,

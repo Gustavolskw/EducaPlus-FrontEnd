@@ -68,9 +68,15 @@ export interface UserResponse {
 export interface Usuario {
   id: number;
   login: string;
+  senha: string;
   role: string;
   materia: string | null;
   disponibilidade: boolean;
+}
+
+export interface EditUser {
+  login: string;
+  newSenha: string;
 }
 
 export interface CadastroUserAnalise {

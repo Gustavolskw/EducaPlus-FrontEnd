@@ -10,6 +10,7 @@ import { AtividadesSelectComponent } from './pages/atividades-select/atividades-
 import { authGuard } from './guards/authGuard';
 import { PostagensComponent } from './pages/postagens/postagens.component';
 import { NotasPageComponent } from './pages/notas-page/notas-page.component';
+import { PerfilUserComponent } from './pages/perfil-user/perfil-user.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: "postar-avaliar",
     component: PostagensComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: "perfil/user",
+    component: PerfilUserComponent,
     canActivate: [authGuard]
   },
   {

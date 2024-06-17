@@ -40,5 +40,12 @@ export class AuthService {
     return this.http.get<any>(`${this.apiUrl}/teste/token`, { headers })
   }
 
+  updateAuth(login: string, senha: string) {
+    return this.http.post<any>(`${this.apiUrl}/auth/update/login`, {
+      login: login,
+      senha: senha
+    });
+  }
+
 
 }

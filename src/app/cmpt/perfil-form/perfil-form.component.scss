@@ -1,0 +1,85 @@
+.btn-volta {
+  background-color: #3d627a;
+}
+
+section {
+  margin: 1rem auto;
+  max-width: 80%;
+  background-color: #3d627a;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4rem 2rem;
+  border: 0px solid black;
+  border-radius: 10px;
+  form {
+    mat-form-field {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      textarea {
+        height: 5rem;
+      }
+      mat-error {
+        padding: 0 2rem;
+        background-color: lightgray;
+      }
+    }
+    div {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      mat-form-field {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        width: 80%;
+      }
+    }
+    mat-card-actions {
+      padding-left: 40%;
+      .btn-volta {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    max-width: 100%;
+    padding: 1rem;
+    form {
+      mat-form-field {
+        width: 90%;
+        mat-label {
+          font-size: 0.8rem;
+        }
+      }
+      div {
+        width: 90%;
+        mat-form-field {
+          mat-label {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      mat-card-actions {
+        padding-left: 28%;
+      }
+    }
+  }
+}
+@media (max-width: 350px) {
+  section {
+    form {
+      mat-card-actions {
+        width: 60%;
+        padding-left: 7%;
+      }
+    }
+  }
+}

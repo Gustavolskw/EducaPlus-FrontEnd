@@ -68,7 +68,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+              "browserTarget": "EducaPlus:build:development",
+              "port": 80
+            },
           "configurations": {
+
             "production": {
               "browserTarget": "EducaPlus:build:production"
             },
@@ -78,6 +83,7 @@
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

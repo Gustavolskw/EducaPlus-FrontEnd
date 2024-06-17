@@ -1,0 +1,67 @@
+<button class="rounded border-0 text-white px-2 my-2 mx-2 d-flex btn-volta" routerLink="/atividades">
+  Retornar <mat-icon class="material-symbols-outlined">login</mat-icon>
+</button>
+
+<section>
+  <form [formGroup]="perfilForm">
+    <mat-form-field class="py-2">
+      <mat-label>Login/Nome</mat-label>
+      <input matInput formControlName="login">
+      <mat-error *ngIf="perfilForm.get('login')?.errors?.['required'] && perfilForm.touched">
+        Login Obrigatorio!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="py-2">
+      <mat-label>Senha Atual: </mat-label>
+      <input matInput type="password" formControlName="senha" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="perfilForm.get('senha')?.errors?.['required'] && perfilForm.touched">
+        Senha Obrigatoria!
+      </mat-error>
+      <mat-error *ngIf="perfilForm.get('senha')?.errors?.['minlength'] && perfilForm.get('senha')?.touched">
+        Senha deve ter no mínimo 5 caracteres!
+      </mat-error>
+    </mat-form-field>
+
+    <div class="d-flex gap-2 py-2">
+      <mat-checkbox (change)="movimentaSenha()" [checked]="disabled">
+        Alterar Senha
+      </mat-checkbox>
+      <mat-form-field class="py-2">
+        <mat-label>Nova Senha: </mat-label>
+        <input matInput type="password" formControlName="newSenha" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="perfilForm.get('newSenha')?.errors?.['required'] && perfilForm.touched">
+          Nova Senha Obrigatoria!
+        </mat-error>
+        <mat-error *ngIf="perfilForm.get('newSenha')?.errors?.['minlength'] && perfilForm.get('newSenha')?.touched">
+          Nova Senha deve ter no mínimo 5 caracteres!
+        </mat-error>
+        <mat-error *ngIf="perfilForm.get('newSenha')?.errors?.['notEqualTo'] && perfilForm.touched">Nova senha deve ser diferente da Antiga!</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex gap-2">
+      <mat-form-field class="py-2">
+        <mat-label>Tipo de Usuario</mat-label>
+        <input matInput formControlName="tipoUsuario">
+      </mat-form-field>
+      <mat-form-field *ngIf="perfilForm.get('tipoUsuario')?.value === 'PROFESSOR'" class="py-2">
+        <mat-label>Materia</mat-label>
+        <input matInput formControlName="materia">
+      </mat-form-field>
+    </div>
+
+    <mat-card-actions class="py-2">
+      <button (click)="enviarAlteracao()" [disabled]="perfilForm.invalid" mat-flat-button color="primary">
+        Alterar Minha Conta
+      </button>
+    </mat-card-actions>
+  </form>
+</section>

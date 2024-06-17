@@ -12,7 +12,7 @@
           <strong *ngIf="materiaDoProfessor!=null">{{materiaDoProfessor}}</strong>
         </p>
       </div>
-      <a href="" class="text-black"><i class="bi bi-person"></i></a>
+      <a [routerLink]="['/perfil/user']" class="text-black"><i class="bi bi-person"></i></a>
     </div>
     <a class="pt-2 text-black" (click)="logout()"><i class="bi bi-box-arrow-right logo-logout"></i></a>
   </div>

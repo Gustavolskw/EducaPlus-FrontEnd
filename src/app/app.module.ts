@@ -62,6 +62,8 @@ import { UsersManageComponent } from './cmpt/users-manage/users-manage.component
 import { RelatoriosComponent } from './cmpt/relatorios/relatorios.component';
 import { NotasComponent } from './cmpt/relatorios/notas/notas.component';
 import { PostProfessorComponent } from './cmpt/relatorios/post-professor/post-professor.component';
+import { PerfilUserComponent } from './pages/perfil-user/perfil-user.component';
+import { PerfilFormComponent } from './cmpt/perfil-form/perfil-form.component';
 
 
 
@@ -102,6 +104,8 @@ import { PostProfessorComponent } from './cmpt/relatorios/post-professor/post-pr
     RelatoriosComponent,
     NotasComponent,
     PostProfessorComponent,
+    PerfilUserComponent,
+    PerfilFormComponent,
   ],
   imports: [
     BrowserModule,

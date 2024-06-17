@@ -9,7 +9,8 @@
       <p class="opiniao">{{feedback.opiniao}}</p>
       <mat-divider></mat-divider>
       <div class="example-button-container">
-        <button mat-mini-fab color="warn" (click)="removeFeedback(feedback.idFeedback)">
+        <button mat-mini-fab [hidden]="feedback.usuario != userlogin && userRole != 0" color="warn"
+          (click)="removeFeedback(feedback.idFeedback)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

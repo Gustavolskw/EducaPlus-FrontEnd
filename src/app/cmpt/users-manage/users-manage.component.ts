@@ -17,6 +17,7 @@ export class UsersManageComponent implements OnInit {
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   userRole!: number | null;
   userName!: string | null;
+  userId!: number | null;
   token!: string;
   semUsers: boolean = true;
   materiasHasUser!: materia[];
@@ -54,6 +55,7 @@ export class UsersManageComponent implements OnInit {
     });
     this.userService.returnUser().subscribe({
       next: (user) => {
+        this.userId = user ? user.id : null;
         this.userName = user ? user?.sub : null;
         this.userRole = user ? user?.role : null;
       },
@@ -91,7 +93,10 @@ export class UsersManageComponent implements OnInit {
         }
       },
       error: (err) => {
-        // Handle error
+        Toast.fire({
+          icon: "error",
+          title: err.error.error
+        });
       }
     });
   }
@@ -139,10 +144,60 @@ export class UsersManageComponent implements OnInit {
 
   inativaUser() {
 
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+
+    this.userService.inativaUser(this.userId, this.token).subscribe({
+      next: (msg) => {
+        Toast.fire({
+          icon: "error",
+          title: msg.responseMessage
+        });
+      },
+      error: (err) => {
+        Toast.fire({
+          icon: "error",
+          title: err.error.error
+        });
+      }
+    });
   }
 
   ativaUser() {
-
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    this.userService.retivaUser(this.userId, this.token).subscribe({
+      next: (msg) => {
+        Toast.fire({
+          icon: "error",
+          title: msg.responseMessage
+        });
+      },
+      error: (err) => {
+        Toast.fire({
+          icon: "error",
+          title: err.error.error
+        });
+      }
+    });
   }
 
 }
